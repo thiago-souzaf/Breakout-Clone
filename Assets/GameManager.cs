@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int score;
+    [SerializeField] TextMeshProUGUI scoreText;
+
     [SerializeField] GameObject brickPrefab;
     private int lineCount = 6;
     private int bricksPerLine = 9;
@@ -14,12 +17,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         InstantiateBricks();
+        UpdateScoreText();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void AddScore(int pointsToAdd)
     {
+        score += pointsToAdd;
+        Debug.Log("Current Score: " + score);
+        UpdateScoreText();
+
     }
 
     private void InstantiateBricks()
@@ -37,5 +46,10 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = $"Score: {score}";
     }
 }
