@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public int score;
-    [SerializeField] TextMeshProUGUI scoreText;
 
     [SerializeField] GameObject brickPrefab;
     private int lineCount = 6;
@@ -14,20 +12,23 @@ public class GameManager : MonoBehaviour
     private float xPosFirstInLine = -7;
     private float yPosFirstInCol = 4.5f;
 
+    [SerializeField] UIHandler uiHandler;
+
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         InstantiateBricks();
-        UpdateScoreText();
+        uiHandler.UpdateScoreText(score);
+        
     }
 
 
     public void AddScore(int pointsToAdd)
     {
         score += pointsToAdd;
-        Debug.Log("Current Score: " + score);
-        UpdateScoreText();
+        uiHandler.UpdateScoreText(score);
 
     }
 
@@ -48,8 +49,5 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void UpdateScoreText()
-    {
-        scoreText.text = $"Score: {score}";
-    }
+    
 }
