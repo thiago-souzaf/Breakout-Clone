@@ -10,6 +10,8 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] TextMeshProUGUI finalScoreText;
+
+    [SerializeField] TextMeshProUGUI instructionText;
     private void Start()
     {
         gameOverPanel.SetActive(false);
@@ -25,5 +27,10 @@ public class UIHandler : MonoBehaviour
         gameOverPanel.SetActive(true);
         finalScoreText.text = finalScore.ToString();
 
+    }
+
+    public void ShowInstructionText(bool setValue)
+    {
+        instructionText.gameObject.SetActive(setValue);
     }
 }

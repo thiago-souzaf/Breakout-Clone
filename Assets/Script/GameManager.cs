@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] BallController ballController;
 
+
     public bool IsGameOver {  get; private set; }
 
     
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
         InstantiateBricks();
         uiHandler.UpdateScoreText(score);
         IsGameOver = false;
-        
+        uiHandler.ShowInstructionText(true);
     }
 
     private void Update()
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         if (!IsGameOver && Input.GetKeyDown(KeyCode.Space))
         {
             ballController.ThrowBall();
+            uiHandler.ShowInstructionText(false);
         }
     }
 
