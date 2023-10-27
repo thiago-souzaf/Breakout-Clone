@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] UIHandler uiHandler;
 
+    [SerializeField] BallController ballController;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,12 @@ public class GameManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void GameOver()
+    {
+        ballController.ResetPosition();
+        Debug.Log("Fim de jogo");
     }
 
     

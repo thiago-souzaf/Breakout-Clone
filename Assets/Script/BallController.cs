@@ -11,11 +11,15 @@ public class BallController : MonoBehaviour
     float maxSpeed = 15f;
     float acceleration = 0.1f;
     private Rigidbody ballRb;
+
+    private Vector3 initialPosition = new(0, -2f);
+    public bool isBallMoving;
     
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         ballRb = GetComponent<Rigidbody>();
+        ResetPosition();
     }
 
     // Update is called once per frame
@@ -26,10 +30,12 @@ public class BallController : MonoBehaviour
             ThrowBall();
         }
         speed = ballRb.velocity.magnitude;
+        
     }
 
     public void ThrowBall()
     {
+        isBallMoving = true;
         Vector3 randomDirection = new(Random.Range(-1f, 1f), 1, 0);
         randomDirection.Normalize();
 
@@ -67,4 +73,11 @@ public class BallController : MonoBehaviour
         return direction;
     }
 
+    public void ResetPosition()
+    {
+        transform.position = initialPosition;
+        isBallMoving = false;
+        ballRb.velocity = Vector3.zero;
+
+    }
 }

@@ -329,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 186760120}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.62, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  isBallMoving: 0
 --- !u!1 &302552577
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +731,7 @@ GameObject:
   - component: {fileID: 958553543}
   - component: {fileID: 958553542}
   - component: {fileID: 958553541}
+  - component: {fileID: 958553545}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -820,6 +822,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &958553545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958553540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19eb8889a9164a4d9d609943cfa1d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1756603728}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,8 +1062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  scoreText: {fileID: 1756603728}
   brickPrefab: {fileID: 8124698522499874516, guid: 5c3bf6daf015ade43960db68f4455ac8, type: 3}
+  uiHandler: {fileID: 958553545}
 --- !u!4 &1352668074
 Transform:
   m_ObjectHideFlags: 0
