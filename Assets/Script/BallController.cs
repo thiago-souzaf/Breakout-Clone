@@ -25,21 +25,22 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ThrowBall();
-        }
+        
         speed = ballRb.velocity.magnitude;
         
     }
 
     public void ThrowBall()
     {
-        isBallMoving = true;
-        Vector3 randomDirection = new(Random.Range(-1f, 1f), 1, 0);
-        randomDirection.Normalize();
+        if (!isBallMoving)
+        {
+            isBallMoving = true;
+            Vector3 randomDirection = new(Random.Range(-1f, 1f), 1, 0);
+            randomDirection.Normalize();
 
-        ballRb.AddForce(randomDirection * throwForce, ForceMode.VelocityChange);
+            ballRb.AddForce(randomDirection * throwForce, ForceMode.VelocityChange);
+        }
+        
         
     }
 

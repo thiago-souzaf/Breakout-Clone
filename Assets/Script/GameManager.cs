@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,14 +17,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] BallController ballController;
 
+    public bool IsGameOver {  get; private set; }
 
+    
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         InstantiateBricks();
         uiHandler.UpdateScoreText(score);
+        IsGameOver = false;
         
+    }
+
+    private void Update()
+    {
+        if (!IsGameOver && Input.GetKeyDown(KeyCode.Space))
+        {
+            ballController.ThrowBall();
+        }
     }
 
 
@@ -54,8 +66,13 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         ballController.ResetPosition();
-        Debug.Log("Fim de jogo");
+        uiHandler.ShowGameOverScreen(score);
+        IsGameOver = true;
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     
 }
