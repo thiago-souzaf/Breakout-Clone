@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
         ballController.ResetPosition();
         uiHandler.ShowGameOverScreen(score);
         IsGameOver = true;
+        if (score > DataManager.Instance.bestScorePoints)
+        {
+            DataManager.Instance.SetNewBestScore(score);
+        }
     }
 
     public void RestartGame()
