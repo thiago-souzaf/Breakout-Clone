@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    float throwForce = 10;
+    float throwForce = 5;
     [SerializeField] float speed;
-    float maxSpeed = 15f;
+    float maxSpeed = 12f;
     float acceleration = 0.1f;
     private Rigidbody ballRb;
 
     private Vector3 initialPosition = new(0, -2f);
     public bool isBallMoving;
+
+    private readonly float minAngulation = 0.2f;
     
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,10 @@ public class BallController : MonoBehaviour
     {
         Vector3 velocity = ballRb.velocity;
         velocity.Normalize();
+
+        // Calculate y so the ball does not go on a straigth line horizontally
+        velocity.y = Mathf.Sign(velocity.y) * Mathf.Max(Mathf.Abs(velocity.y), this.minAngulation);
+
 
         speed = (speed < maxSpeed) ? (speed + acceleration) : maxSpeed;
         
