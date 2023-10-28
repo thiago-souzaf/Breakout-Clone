@@ -16,20 +16,21 @@ public class BallController : MonoBehaviour
     public bool isBallMoving;
 
     private readonly float minAngulation = 0.2f;
+
+    private SfxController ballSfxController;
     
     // Start is called before the first frame update
     void Start()
     { 
         ballRb = GetComponent<Rigidbody>();
         ResetPosition();
+        ballSfxController = GetComponent<SfxController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         speed = ballRb.velocity.magnitude;
-        
     }
 
     public void ThrowBall()
@@ -41,9 +42,7 @@ public class BallController : MonoBehaviour
             randomDirection.Normalize();
 
             ballRb.AddForce(randomDirection * throwForce, ForceMode.VelocityChange);
-        }
-        
-        
+        } 
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -65,6 +64,11 @@ public class BallController : MonoBehaviour
 
             // Change velocity direction while maintaining speed;
             velocity = velocity.magnitude * newDirection;
+            ballSfxController.PlaySfx("Paddle");
+        } else
+        {
+            ballSfxController.PlaySfx(collision.gameObject.tag);
+
         }
 
         ballRb.velocity = velocity;
